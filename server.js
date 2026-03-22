@@ -10,24 +10,35 @@ connectDB();
 
 const app = express();
 
+// ✅ CORS CONFIG (FIXED)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  // add your deployed frontend URL later
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
+
 // Middleware
 app.use(express.json());
 app.use(helmet());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
 
-// 🔐 Rate Limiter (DEFINE FIRST)
+// 🔐 Rate Limiter
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000,
   max: 100,
   message: "Too many requests, please try again later.",
 });
 
-// THEN USE IT
 app.use(limiter);
 
 // Routes
@@ -38,6 +49,7 @@ app.get("/", (req, res) => {
   res.send("Auth Server Running 🚀");
 });
 
+// Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
