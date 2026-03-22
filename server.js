@@ -14,7 +14,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
-  // add your deployed frontend URL later
+  "https://secure-auth-system-two.vercel.app",
 ];
 
 app.use(cors({
