@@ -163,28 +163,27 @@ JWT_REFRESH_SECRET=your_refresh_secret_key
 ---
 
 ## 📁 Project Structure
-
-
+```
 secure-auth-system/
 ├── config/
-│   └── db.js               # MongoDB connection
+│   └── db.js
 ├── controllers/
-│   └── authController.js   # Auth logic
+│   └── authController.js
 ├── middleware/
-│   └── authMiddleware.js   # JWT protect middleware
+│   └── authMiddleware.js
 ├── models/
-│   └── userModel.js        # User schema
+│   └── userModel.js
 ├── routes/
-│   └── authRoutes.js       # Auth routes
+│   └── authRoutes.js
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx         # Main React component
-│   │   └── main.jsx        # Entry point
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   ├── index.html
 │   └── vite.config.js
-├── server.js               # Express app entry
-└── .env                    # Environment variables
-
+├── server.js
+└── .env
+```
 
 ---
 
